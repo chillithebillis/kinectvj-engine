@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KinectVJ - Harsh Psychedelic Engine</title>
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Main Canvas for output -->
+    <canvas id="visualizer-canvas"></canvas>
+    
+    <!-- Video element for local video upload feature -->
+    <video id="user-video" loop muted autoplay playsinline style="display:none;"></video>
+    <input type="file" id="video-upload" accept="video/*" style="display:none;" />
+
+    <!-- VHS / Lens overlay effects -->
+    <div id="vhs-effects" class="pointer-pass">
+        <div class="noise"></div>
+        <div class="scanlines"></div>
+        <div class="vignette"></div>
+        <div class="lens-curve"></div>
+    </div>
+
+    <!-- VJ GUI Panel -->
+    <div id="vj-panel" class="hidden classy-panel">
+      <!-- DECK A -->
+      <div class="deck deck-a">
+        <h3>DECK A (1-5)</h3>
+        <div class="btn-group">
+          <button class="mode-a active" data-val="1">SAKURA</button>
+          <button class="mode-a" data-val="2">HALFTONE</button>
+          <button class="mode-a" data-val="3">FACE</button>
+          <button class="mode-a" data-val="4">FLUID</button>
+          <button class="mode-a" data-val="5">KLAIDA</button>
+        </div>
+        <div class="control-group">
+          <label>HUE</label>
+          <input type="range" id="hue-slider-a" min="0" max="360" step="1" value="0">
+        </div>
+      </div>
+      
+      <!-- CENTRAL ACTIONS & FX -->
+      <div class="central-mix">
+        <div class="crossfader">
+          <span>A</span>
+          <input type="range" id="mix-slider" min="0" max="1" step="0.01" value="0.5">
+          <span>B</span>
+        </div>
+        
+        <div class="fx-section">
+          <div class="fx-row">
+            <button id="btn-auto-hue" class="fx-btn">Auto Hue</button>
+            <button id="btn-mirror-h" class="fx-btn">1/2 H</button>
+            <button id="btn-mirror-v" class="fx-btn">1/2 V</button>
+            <button id="btn-mirror-c" class="fx-btn">Kaleida</button>
+          </div>
+          <div class="fx-row">
+            <button id="btn-strobe-bw" class="fx-btn">B/W Strobe</button>
+            <select id="blend-mode-select" class="fx-select">
+                <option value="screen">Screen (Light)</option>
+                <option value="difference">Difference</option>
+                <option value="color-dodge">Color Dodge</option>
+                <option value="source-over">Normal</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label>BASS / KICK POWER</label>
+            <input type="range" id="bass-slider" min="0" max="3" step="0.1" value="1">
+          </div>
+          <div class="control-group">
+            <label>ECHO TRAIL</label>
+            <input type="range" id="trail-slider" min="0" max="0.99" step="0.01" value="0.3">
+          </div>
+        </div>
+      </div>
+
+      <!-- DECK B -->
+      <div class="deck deck-b">
+        <h3>DECK B (6-0)</h3>
+        <div class="btn-group">
+          <button class="mode-b" data-val="6">ANIME</button>
+          <button class="mode-b active" data-val="7">GRID</button>
+          <button class="mode-b" data-val="8">PLEXUS</button>
+          <button class="mode-b" data-val="9">ORBIT</button>
+          <button class="mode-b" data-val="10">LASER</button>
+          <button class="mode-b" data-val="11" id="btn-video-mode" title="Click to upload LOCAL VIDEO">VIDEO</button>
+        </div>
+        <div class="control-group">
+          <label>HUE</label>
+          <input type="range" id="hue-slider-b" min="0" max="360" step="1" value="0">
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Tools -->
+    <div id="top-tools" class="hidden">
+      <div id="midi-status" class="midi-off">MIDI OFF</div>
+      <button id="btn-rec" class="record-btn">REC</button>
+    </div>
+
+    <div id="ui-container">
+      <div id="intro-panel">
+        <h1 class="glitch-text">KinectVJ Mix</h1>
+        <p>Crossfader duplo dinâmico. <strong>Clique e arraste</strong> (drag/pinch) na tela para dobrar o espaço e tempo com seu mouse.</p>
+        
+        <div class="actions">
+          <button id="btn-capture">Capturar Stream (Aba com Áudio)</button>
+          <button id="btn-mic" class="secondary">Usar Microfone Local</button>
+        </div>
+        
+        <div class="tutorial">
+          <strong>Como operar (Estilo VJ):</strong>
+          <ol>
+            <li>Deck A (1-5): Visuais melódicos fluidos. Deck B (6-11): Punk & Vídeo.</li>
+            <li>Use o <strong>Scroll do Mouse</strong> para mixar (Crossfader).</li>
+            <li>Aperte <strong>H</strong> ou <strong>ESC</strong> para esconder todo o HUD/Painéis (Limpar tela para OBS/Twitch).</li>
+            <li>Em DECK B, selecione VIDEO para upar e mixar um clipe local em loop.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

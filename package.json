@@ -1,0 +1,36 @@
+{
+  "name": "stream-visualizer",
+  "productName": "KinectVJ Component",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "electron-main.cjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "electron": "electron .",
+    "electron:build": "npm run build && electron-builder"
+  },
+  "build": {
+    "appId": "com.kinectvj.engine",
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "files": [
+      "dist/**/*",
+      "electron-main.cjs"
+    ]
+  },
+  "devDependencies": {
+    "electron": "^41.0.2",
+    "electron-builder": "^26.8.1",
+    "typescript": "~5.9.3",
+    "vite": "^8.0.0"
+  }
+}
