@@ -367,15 +367,14 @@ body:active {
   animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glitch-text {
-  font-family: 'Outfit', sans-serif;
+.pro-title {
+  font-family: 'Inter', sans-serif;
   font-size: 3rem;
-  font-weight: 600;
-  letter-spacing: -2px;
+  font-weight: 800;
+  letter-spacing: -1px;
   margin-bottom: 1rem;
   color: #fff;
   text-transform: uppercase;
-  text-shadow: 3px 0 0 red, -3px 0 0 cyan;
 }
 
 p {

@@ -66,7 +66,11 @@
             <button id="btn-mirror-c" class="fx-btn">KALEIDA</button>
           </div>
           <div class="fx-row">
-            <button id="btn-strobe-bw" class="fx-btn">STROBE</button>
+            <select id="strobe-select" class="fx-select">
+                <option value="0">Strobe: OFF</option>
+                <option value="1">Strobe: MID/SNARE</option>
+                <option value="2">Strobe: RAVE</option>
+            </select>
             <button id="btn-blackout" class="fx-btn warning">BLACKOUT</button>
             <button id="btn-tap" class="fx-btn">TAP</button>
           </div>
@@ -110,17 +114,18 @@
     <!-- Top Tools -->
     <div id="top-tools" class="hidden">
       <div id="midi-status" class="midi-off">MIDI OFF</div>
+      <button id="btn-popout" class="record-btn" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); color: white;">DETACH HUD</button>
       <button id="btn-rec" class="record-btn">REC</button>
     </div>
 
     <div id="ui-container">
       <div id="intro-panel">
-        <h1 class="glitch-text">KinectVJ Mix</h1>
-        <p>Crossfader duplo dinâmico. <strong>Clique e arraste</strong> (drag/pinch) na tela para dobrar o espaço e tempo com seu mouse.</p>
+        <h1 class="pro-title">KINECTVJ</h1>
+        <p>Motor Visual Reativo de Alta Performance. Arraste na tela para dobrar o espaço (Warp).</p>
         
         <div class="actions">
-          <button id="btn-capture">Capturar Stream (Aba com Áudio)</button>
-          <button id="btn-mic" class="secondary">Usar Microfone Local</button>
+          <button id="btn-capture">Vincular Áudio de Aba/Stream</button>
+          <button id="btn-mic" class="secondary">Vincular Microfone Direto</button>
         </div>
         
         <div class="tutorial">

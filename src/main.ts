@@ -33,7 +33,7 @@ let mirrorV = false;
 let mirrorC = false;
 let trailValue = 0.3;
 
-let strobeBW = false;
+let strobeMode = 0;
 let mixBlendMode: GlobalCompositeOperation = 'screen';
 let bassMultiplier = 1.0;
 let hudVisible = true;
@@ -153,8 +153,8 @@ btnMirrorV.addEventListener('click', () => { mirrorV = !mirrorV; btnMirrorV.clas
 const btnMirrorC = document.getElementById('btn-mirror-c')!;
 btnMirrorC.addEventListener('click', () => { mirrorC = !mirrorC; btnMirrorC.classList.toggle('active', mirrorC); });
 
-const btnStrobe = document.getElementById('btn-strobe-bw')!;
-btnStrobe.addEventListener('click', () => { strobeBW = !strobeBW; btnStrobe.classList.toggle('active', strobeBW); });
+const strobeSelect = document.getElementById('strobe-select') as HTMLSelectElement;
+strobeSelect.addEventListener('change', (e) => strobeMode = parseInt((e.target as HTMLSelectElement).value));
 
 const btnBlackout = document.getElementById('btn-blackout')!;
 btnBlackout.addEventListener('click', () => { isBlackout = !isBlackout; btnBlackout.classList.toggle('active', isBlackout); });
@@ -183,6 +183,44 @@ const mobileToggleBtn = document.getElementById('mobile-toggle-btn')!;
 mobileToggleBtn.addEventListener('click', () => {
     vjPanel.classList.toggle('show-mobile');
     vjPanel.classList.toggle('hidden');
+});
+
+// Detach HUD Logic
+const btnPopout = document.getElementById('btn-popout')!;
+btnPopout.addEventListener('click', () => {
+    hudVisible = false;
+    vjPanel.classList.add('hidden');
+    document.getElementById('top-tools')?.classList.add('hidden');
+    
+    // Open Controller Window
+    const win = window.open('', 'VJControls', 'width=500,height=800,menubar=no,toolbar=no');
+    if (win) {
+        const doc = win.document;
+        doc.body.style.backgroundColor = '#030303';
+        doc.title = 'KinectVJ Remote';
+        
+        document.querySelectorAll('style, link[rel="stylesheet"]').forEach(el => doc.head.appendChild(el.cloneNode(true)));
+        
+        doc.body.appendChild(vjPanel);
+        vjPanel.classList.remove('hidden');
+        vjPanel.style.position = 'relative';
+        vjPanel.style.bottom = 'auto';
+        vjPanel.style.left = 'auto';
+        vjPanel.style.transform = 'none';
+        vjPanel.style.margin = '2rem auto';
+        
+        win.addEventListener('unload', () => {
+             document.body.appendChild(vjPanel);
+             vjPanel.style.position = '';
+             vjPanel.style.bottom = '';
+             vjPanel.style.left = '';
+             vjPanel.style.transform = '';
+             vjPanel.style.margin = '';
+             vjPanel.classList.add('hidden'); 
+        });
+    } else {
+        alert('Popup bloqueado! Permita popups para usar a tela destacável.');
+    }
 });
 
 const blendSelect = document.getElementById('blend-mode-select') as HTMLSelectElement;
@@ -976,12 +1014,14 @@ function drawSuperloop() {
         mainCanvas.style.transform = `none`; 
     }
     
-    if (strobeBW) {
-        // Apply intense B/W strobing filter
-        mainCanvas.style.filter = `grayscale(100%) ${isBeatExtracted && kickLevel > 0.8 * bassMultiplier ? 'invert(100%) brightness(150%)' : ''}`;
+    if (strobeMode === 1) { // Mid/Snares Synced
+        const trigger = midLevel > 0.65;
+        mainCanvas.style.filter = `grayscale(100%) ${trigger ? 'invert(100%) brightness(150%)' : ''}`;
+    } else if (strobeMode === 2) { // Rave Chaos
+        const trigger = (Math.random() > 0.8 && highLevel > 0.4) || (isBeatExtracted && Math.random() > 0.5);
+        mainCanvas.style.filter = trigger ? 'invert(100%) brightness(200%)' : 'grayscale(100%)';
     } else {
-        // Remove filter when strobing is off
-        mainCanvas.style.filter = `none`;
+        mainCanvas.style.filter = 'none';
     }
 
     if (crossfadeValue < 1) renderDeckA(ctxA, deckAMode, cx, cy);
