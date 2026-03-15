@@ -1,78 +1,79 @@
 <div align="center">
   <img src="public/favicon.svg" alt="KinectVJ Logo" width="120" height="120" />
   <h1>KinectVJ Engine 🎛️🌌</h1>
-  <p><strong>Motor de Visuais e VJing Reativo a Áudio em Tempo Real (Web & Desktop)</strong></p>
+  <p><strong>Real-time Audio-Reactive VJ & Visual Engine (Web & Desktop)</strong></p>
+  <p><em>🚧 BETA VERSION 🚧 — Developed by <strong>chillibillis</strong></em></p>
 </div>
 
 <br/>
 
-O **KinectVJ Engine** é uma ferramenta de performance visual poderosa e baseada em navegador (exportável para Windows via Electron), desenvolvida para streamers, VJs e entusiastas de música. Ele captura o áudio do seu microfone ou do sistema e gera visuais psicodélicos, minimalistas e reativos à batida (Kick/Bass) em tempo real.
+The **KinectVJ Engine** is a powerful, browser-based visual performance tool (exportable to Windows via Electron), built for streamers, VJs, and music enthusiasts. It captures audio from your microphone or system and generates psychedelic, minimalist, and beat-reactive (Kick/Bass) visuals in real time.
 
-![KinectVJ Engine Screenshot](https://raw.githubusercontent.com/chillithebillis/kinectvj-engine/main/src/assets/hero.png) *(Adicione uma screenshot do seu projeto na pasta src/assets com o nome hero.png)*
+![KinectVJ Engine Screenshot](https://raw.githubusercontent.com/chillithebillis/kinectvj-engine/main/src/assets/hero.png) *(Drop a screenshot of your project into the src/assets folder and name it hero.png to display it here)*
 
-## ✨ Funcionalidades (Features)
+## ✨ Features
 
-*   🎚️ **Sistema Dual-Deck (A/B):** Faça mixagens suaves usando um crossfader virtual igual a equipamentos de DJ.
-    *   **Deck A (Melódico/Psicodélico):** Visuais fluidos, fractais em caleidoscópio, galáxias 3D e halftones estéticos.
-    *   **Deck B (Punk/Agressivo):** Estética Y2K Anime, grades de osciloscópio tridimensionais, feixes de laser e suporte a overlay de vídeo.
-*   🎥 **Integração com Vídeos Locais:** Faça upload de vídeos do seu computador em tempo real para o Deck B e misture com os efeitos visuais usando Modos de Mesclagem (Screen, Dodge, Difference).
-*   🎶 **Análise Avançada de Áudio:** Resposta milimétrica a frequências Kick, Bass, Mid e High para animações dinâmicas.
-*   👁️ **Modo Transmissão (Sem HUD):** Aperte `H` ou `ESC` para remover toda a interface. Perfeito para captura limpa no OBS Studio, Twitch ou projetores.
-*   🎞️ **Efeitos Globais (FX):** Strobe Preto e Branco na batida do kick, Rastro (Trail) anti-exposição estourada, espelhamentos de tela (Kaleida, 1/2 V, 1/2 H) e Auto-Hue.
-*   🖥️ **Suporte Nativo Desktop:** Transforme o visualizador Web em um `.EXE` pronto para Windows sem necessidade de internet.
+*   🎚️ **Dual-Deck System (A/B):** Blend visuals smoothly using a virtual DJ-style crossfader.
+    *   **Deck A (Melodic/Psychedelic):** Fluid visuals, kaleidoscope fractals, 3D galaxies, and aesthetic halftones.
+    *   **Deck B (Punk/Aggressive):** Y2K Anime aesthetics, 3D oscilloscope grids, laser beams, and video overlay support.
+*   🎥 **Local Video Integration:** Upload videos from your PC in real-time to Deck B and blend them with visual effects using Blend Modes (Screen, Dodge, Difference).
+*   🎶 **Advanced Audio Analysis:** Pinpoint reactivity to Kick, Bass, Mid, and High frequencies for dynamic animations.
+*   👁️ **Broadcast Mode (No HUD):** Press `H` or `ESC` to hide the entire UI. Perfect for clean capture in OBS Studio, Twitch, or live projectors.
+*   🎞️ **Global FX:** Black & White Strobe on kick beats, Anti-exposure Trail effect, Screen Mirroring (Kaleida, 1/2 V, 1/2 H), and Auto-Hue.
+*   🖥️ **Native Desktop Support:** Turn the Web visualizer into a standalone `.EXE` for Windows, requiring no internet connection.
 
-## 🚀 Como Acessar / Usar
+## 🚀 How to Access / Use
 
-### 🌐 Opção 1: Versão Web (Ao Vivo)
-Acesse a versão hospedada rodando direto no seu navegador de qualquer lugar:
-👉 **[kinectvj-engine.vercel.app](https://kinectvj-engine.vercel.app)** *(Confirme o link gerado pelo seu Vercel)*
+### 🌐 Option 1: Web Version (Live)
+Access the hosted version directly in your browser from anywhere:
+👉 **[kinectvj-engine.vercel.app](https://kinectvj-engine.vercel.app)** *(Link to your live Vercel app)*
 
-1. Clique em **"Capturar Stream"** (para ouvir o áudio do PC/Navegador) ou **"Microfone Local"**.
-2. Brinque com o Crossfader e os Botões.
+1. Click **"Capturar Stream"** (to capture PC/Browser audio) or **"Microfone Local"**.
+2. Play with the Crossfader and Buttons.
 
-### 💻 Opção 2: Instalador Windows (.EXE)
-Baixe a versão nativa completa na aba **Releases** deste GitHub.
-1. Baixe o arquivo `KinectVJ-Windows-Portable.zip`.
-2. Extraia e execute `KinectVJ Component.exe`.
+### 💻 Option 2: Windows Installer (.EXE)
+Download the full native version from the **Releases** tab on this GitHub.
+1. Download the `KinectVJ-Windows-Portable.zip` file.
+2. Extract it and run `KinectVJ Component.exe`.
 
 ---
 
-## 🛠️ Para Desenvolvedores
+## 🛠️ For Developers
 
-Se você quer baixar o código-fonte, modificar as cores ou criar novas cenas visuais (no arquivo `src/main.ts`):
+If you want to download the source code, tweak colors, or build new visual scenes (inside the `src/main.ts` file):
 
-### Instalação Física (Local)
+### Local Installation
 ```bash
-# Clone o repositório
+# Clone the repository
 git clone https://github.com/chillithebillis/kinectvj-engine.git
 
-# Entre na pasta
+# Enter the folder
 cd kinectvj-engine
 
-# Instale as dependências
+# Install dependencies
 npm install
 
-# Inicie o servidor de testes (Irá abrir no seu navegador local)
+# Start the dev server (Opens in your local browser)
 npm run dev
 ```
 
-### Criando o arquivo .EXE para Windows
-O projeto já está configurado com o construtor `electron-builder`. Para fabricar um `.exe` na sua máquina:
+### Building the Windows .EXE
+The project is already set up with `electron-builder`. To build an `.exe` on your machine:
 ```bash
-# Rode a construção
+# Run the build process
 npm run electron:build
 ```
-O executável final e os arquivos nativos aparecerão dentro da pasta `/release`.
+The final executable and native files will appear inside the `/release` folder.
 
-## 🎮 Controles de Teclado (Atalhos)
-*   **1 a 5:** Troca cenas do DECK A.
-*   **6 a 0:** Troca cenas do DECK B.
-*   **Scroll do Mouse:** Move o Crossfader (A <-> B)
-*   **Click + Drag (Tela):** Efeito de Dobra Espacial (Warp) onde o mouse estiver.
-*   **H ou ESC:** Esconde o Painel de VJ e Interface.
+## 🎮 Keyboard Controls (Shortcuts)
+*   **1 to 5:** Switches scenes on DECK A.
+*   **6 to 0:** Switches scenes on DECK B.
+*   **Mouse Scroll:** Moves the Crossfader (A <-> B).
+*   **Click + Drag (Screen):** Spatial Warp effect wherever the mouse points.
+*   **H or ESC:** Hides the VJ Panel and UI.
 
 ---
 
 <div align="center">
-  <p>Feito com ⚡ Vite, TypeScript e Canvas API.</p>
+  <p>Built with ⚡ Vite, TypeScript, and the Canvas API.</p>
 </div>
