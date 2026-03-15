@@ -37,6 +37,7 @@ let strobeBW = false;
 let mixBlendMode: GlobalCompositeOperation = 'screen';
 let bassMultiplier = 1.0;
 let hudVisible = true;
+let isBlackout = false;
 
 const mirrorCanvas = document.createElement('canvas');
 const mirrorCtx = mirrorCanvas.getContext('2d')!;
@@ -106,9 +107,15 @@ window.addEventListener('keydown', (e) => {
     // HUD Toggle
     if (e.key.toLowerCase() === 'h' || e.key === 'Escape') {
         hudVisible = !hudVisible;
-        const uiElements = [vjPanel, document.getElementById('top-tools'), document.getElementById('vhs-effects')];
+        const uiElements = [vjPanel, document.getElementById('top-tools'), document.getElementById('vhs-effects'), document.getElementById('mobile-toggle-btn')];
         uiElements.forEach(el => el?.classList.toggle('hidden', !hudVisible));
         return;
+    }
+
+    // Blackout Toggle
+    if (e.key.toLowerCase() === 'b') {
+        isBlackout = !isBlackout;
+        document.getElementById('btn-blackout')?.classList.toggle('active', isBlackout);
     }
 
     switch(e.key) {
@@ -148,6 +155,35 @@ btnMirrorC.addEventListener('click', () => { mirrorC = !mirrorC; btnMirrorC.clas
 
 const btnStrobe = document.getElementById('btn-strobe-bw')!;
 btnStrobe.addEventListener('click', () => { strobeBW = !strobeBW; btnStrobe.classList.toggle('active', strobeBW); });
+
+const btnBlackout = document.getElementById('btn-blackout')!;
+btnBlackout.addEventListener('click', () => { isBlackout = !isBlackout; btnBlackout.classList.toggle('active', isBlackout); });
+
+const btnTap = document.getElementById('btn-tap')!;
+
+function triggerTap() {
+    isBeatExtracted = true;
+    kickLevel = 2.0;
+    btnTap.classList.add('active');
+}
+
+function releaseTap() {
+    btnTap.classList.remove('active');
+}
+
+btnTap.addEventListener('mousedown', triggerTap);
+btnTap.addEventListener('touchstart', (e) => { e.preventDefault(); triggerTap(); });
+
+btnTap.addEventListener('mouseup', releaseTap);
+btnTap.addEventListener('touchend', (e) => { e.preventDefault(); releaseTap(); });
+btnTap.addEventListener('mouseleave', releaseTap);
+
+// Mobile Toggle Handle
+const mobileToggleBtn = document.getElementById('mobile-toggle-btn')!;
+mobileToggleBtn.addEventListener('click', () => {
+    vjPanel.classList.toggle('show-mobile');
+    vjPanel.classList.toggle('hidden');
+});
 
 const blendSelect = document.getElementById('blend-mode-select') as HTMLSelectElement;
 blendSelect.addEventListener('change', (e) => mixBlendMode = (e.target as HTMLSelectElement).value as GlobalCompositeOperation);
@@ -1013,6 +1049,13 @@ function drawSuperloop() {
         mainCtx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
         mainCtx.lineWidth = 1 + bassLevel * 5;
         mainCtx.stroke();
+    }
+
+    // Blackout override
+    if (isBlackout) {
+        mainCtx.globalCompositeOperation = 'source-over';
+        mainCtx.fillStyle = '#000';
+        mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
     }
 }
 

@@ -3,11 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KinectVJ - Harsh Psychedelic Engine</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>KinectVJ - Minimalist Pro Engine</title>
     <link rel="stylesheet" href="/src/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
   </head>
   <body>
     <!-- Main Canvas for output -->
@@ -24,6 +26,11 @@
         <div class="vignette"></div>
         <div class="lens-curve"></div>
     </div>
+
+    <!-- Mobile Toggle Button (Visible only on small screens) -->
+    <button id="mobile-toggle-btn" class="hidden-desktop">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
 
     <!-- VJ GUI Panel -->
     <div id="vj-panel" class="hidden classy-panel">
@@ -53,18 +60,22 @@
         
         <div class="fx-section">
           <div class="fx-row">
-            <button id="btn-auto-hue" class="fx-btn">Auto Hue</button>
+            <button id="btn-auto-hue" class="fx-btn">AUTO HUE</button>
             <button id="btn-mirror-h" class="fx-btn">1/2 H</button>
             <button id="btn-mirror-v" class="fx-btn">1/2 V</button>
-            <button id="btn-mirror-c" class="fx-btn">Kaleida</button>
+            <button id="btn-mirror-c" class="fx-btn">KALEIDA</button>
           </div>
           <div class="fx-row">
-            <button id="btn-strobe-bw" class="fx-btn">B/W Strobe</button>
+            <button id="btn-strobe-bw" class="fx-btn">STROBE</button>
+            <button id="btn-blackout" class="fx-btn warning">BLACKOUT</button>
+            <button id="btn-tap" class="fx-btn">TAP</button>
+          </div>
+          <div class="fx-row">
             <select id="blend-mode-select" class="fx-select">
-                <option value="screen">Screen (Light)</option>
-                <option value="difference">Difference</option>
-                <option value="color-dodge">Color Dodge</option>
-                <option value="source-over">Normal</option>
+                <option value="screen">Blend: Screen</option>
+                <option value="difference">Blend: Difference</option>
+                <option value="color-dodge">Blend: Dodge</option>
+                <option value="source-over">Blend: Normal</option>
             </select>
           </div>
           <div class="control-group">
@@ -113,12 +124,12 @@
         </div>
         
         <div class="tutorial">
-          <strong>Como operar (Estilo VJ):</strong>
+          <strong>Como operar (Desktop & Mobile):</strong>
           <ol>
+            <li>No celular, acesse o link para ter o controle remoto VJ na sua mão!</li>
             <li>Deck A (1-5): Visuais melódicos fluidos. Deck B (6-11): Punk & Vídeo.</li>
-            <li>Use o <strong>Scroll do Mouse</strong> para mixar (Crossfader).</li>
-            <li>Aperte <strong>H</strong> ou <strong>ESC</strong> para esconder todo o HUD/Painéis (Limpar tela para OBS/Twitch).</li>
-            <li>Em DECK B, selecione VIDEO para upar e mixar um clipe local em loop.</li>
+            <li>Use o <strong>Crossfader</strong> para mixar (ou o Scroll do Mouse).</li>
+            <li>Aperte <strong>H</strong> ou <strong>ESC</strong> para esconder a interface (Ideal para Telão/OBS).</li>
           </ol>
         </div>
       </div>
